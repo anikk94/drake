@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<sdf version="1.7" xmlns:drake="drake.mit.edu">
+	<model name="ikea_bin">
+		<!-- Make this model static so the bin does not move in simulation. -->
+		<static>true</static>
+		<!-- Default placement for the static bin when included directly.
+		     This places the model at (0.5, 0.11, 0.11) in the parent frame. -->
+		<pose>0.5 0.11 0.11 0 0 0</pose>
+		<link name="ikea_bin">
+			<inertial>
+				<pose>0 0 0 0 0 0</pose>
+				<!-- approximate mass -->
+				<mass>1.2</mass>
+				<inertia>
+					<ixx>0.02</ixx>
+					<ixy>0.0</ixy>
+					<ixz>0.0</ixz>
+					<iyy>0.02</iyy>
+					<iyz>0.0</iyz>
+					<izz>0.02</izz>
+				</inertia>
+			</inertial>
+
+			<visual name="visual">
+				<pose>-0.5 0 0 -1.57 3.14 0</pose>
+				<geometry>
+					<mesh>
+						<!-- Use relative path so Bazel runfiles can stage package data together -->
+						<uri>assets/ikea_bin_v4.gltf</uri>
+						<scale>1 1 1</scale>
+					</mesh>
+				</geometry>
+			</visual>
+
+			<collision name="collision">
+                <pose>-0.5 0 0 0 3.14 0</pose>
+				<geometry>
+					<mesh>
+						<!-- <uri>assets/ikea_bin.gltf</uri> -->
+						<!-- <uri>assets/ikea_bin_v4.gltf</uri> -->
+						<!-- <uri>assets/ikea_bin.vtk</uri> -->
+						<!-- <uri>assets/ikea_bin_v2.vtk</uri> -->
+						<!-- <uri>assets/ikea_bin_v4.vtk</uri> -->
+						<uri>assets/ikea_bin_v4_only_tets.vtk</uri>
+						<!-- <uri>assets/ikea_bin_v4.obj</uri> -->
+						<scale>0.001 0.001 0.001</scale>
+					</mesh>
+				</geometry>
+			</collision>
+		</link>
+
+		<frame name="origin">
+			<pose relative_to="ikea_bin">0 0 0 0 0 0</pose>
+		</frame>
+	</model>
+</sdf>

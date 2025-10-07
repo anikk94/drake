@@ -1,0 +1,20 @@
+package(default_visibility = ["//visibility:public"])
+
+filegroup(
+    name = "ikea_bin_assets",
+    srcs = glob(["assets/**"]),
+)
+
+filegroup(
+    name = "ikea_bin_sdf",
+    srcs = ["ikea_bin.sdf"],
+)
+
+# A tiny helper binary that prints the runfiles path to the SDF and glTF so
+# users can test that bazel staged the files correctly. It's intended for
+# quick `bazel run //ani_model_lib/ikea_bin:print_runfiles` checks only.
+cc_binary(
+    name = "print_runfiles",
+    srcs = ["print_runfiles.sh"],
+    data = [":ikea_bin_assets", ":ikea_bin_sdf"],
+)

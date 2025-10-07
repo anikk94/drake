@@ -1,0 +1,24 @@
+DemoMinimal:
+  scene_graph_config:
+    default_proximity_properties:
+      compliance_type: "compliant"
+  directives:
+  - add_model:
+      name: amazon_table
+      file: package://drake_models/manipulation_station/amazon_table_simplified.sdf
+  - add_weld:
+      parent: world
+      child: amazon_table::amazon_table
+  - add_model:
+      name: ani_ikea_bin
+      file: file:///root/drake_ws/drake/ani_model_lib/ikea_bin/ikea_bin.sdf
+  - add_frame:
+      name: ikea_bin_on_table
+      X_PF:
+        base_frame: amazon_table::amazon_table
+        translation: [0.5, 0.11, 0.11]
+  - add_weld:
+      parent: ikea_bin_on_table
+      child: ani_ikea_bin::origin
+
+lcm_buses: {}

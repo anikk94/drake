@@ -1,0 +1,13 @@
+package(default_visibility = ["//visibility:public"])
+
+
+# Minimal BUILD file to expose contents of ani_model_lib as a Bazel package.
+# This allows SDF/URDF files that use package://ani_model_lib/... to resolve
+# when running under Bazel (runfiles visibility).
+
+filegroup(
+    name = "ani_model_library_files",
+    # name = "ani_model_library",
+    srcs = glob(["**"]),
+    visibility = ["//visibility:public"],
+)

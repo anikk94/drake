@@ -1,0 +1,7 @@
+filegroup(
+    name="m12_screw_files",
+    srcs=glob([
+        "**"
+    ]),
+    visibility=["//visibility:public"],
+)

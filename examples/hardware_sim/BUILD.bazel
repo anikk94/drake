@@ -23,6 +23,7 @@ filegroup(
         "@drake_models//:manipulation_station",
         "@drake_models//:veggies",
         "@drake_models//:wsg_50_description",
+        "@drake_models//:dishes",
     ],
     visibility = ["//:__pkg__"],
 )

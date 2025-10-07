@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<sdf version="1.7" xmlns:drake="drake.mit.edu">
+  <!--
+    m12_screw_gpt.sdf
+    Simple gpt (primitive) SDF model of an M12 socket-head screw composed
+    of two coaxial cylinders: the threaded shaft and the socket head.
+
+    Units: meters, kilograms, radians.
+    Dimensions chosen as a reasonable approximation for an M12 socket head
+    cap screw (metric):
+      - shaft diameter: 12 mm (radius 0.006 m)
+      - shaft length:   50 mm (0.05 m)
+      - head diameter: 18 mm (radius 0.009 m)
+      - head height:   10 mm (0.01 m)
+
+    Mass/inertia are computed assuming steel density (7850 kg/m^3) and the
+    combined inertial matrix is expressed about the model frame origin. The
+    inertial <pose> locates the center of mass.
+  -->
+
+  <model name="m12_screw_gpt">
+    <link name="m12_screw_gpt">
+      <inertial>
+        <!-- Center of mass (computed for the two-cylinder assembly) -->
+        <pose>0 0 0.01794 0 0 0</pose>
+        <!-- Total mass (approximate, steel) -->
+        <mass>0.03773</mass>
+        <inertia>
+          <!-- Principal inertias about the model frame (kg*m^2) -->
+          <ixx>3.43786e-06</ixx>
+          <ixy>0.0</ixy>
+          <ixz>0.0</ixz>
+          <iyy>3.43786e-06</iyy>
+          <iyz>0.0</iyz>
+          <izz>1.12840e-06</izz>
+        </inertia>
+      </inertial>
+
+      <!-- Visual: Shaft (long thin cylinder) -->
+      <visual name="shaft_visual">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.006</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+
+      <!-- Visual: Head (short, wider cylinder) -->
+      <visual name="head_visual">
+        <pose>0 0 0.025 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+        <material>
+          <ambient>0.6 0.6 0.6 1</ambient>
+          <diffuse>0.8 0.8 0.8 1</diffuse>
+          <specular>0.2 0.2 0.2 1</specular>
+        </material>
+      </visual>
+
+      <!-- Collision: shaft -->
+      <collision name="shaft_collision">
+        <pose>0 0 0.01 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.006</radius>
+            <length>0.02</length>
+          </cylinder>
+        </geometry>
+        <!-- Proximity properties (left commented as in other models) -->
+        <!--
+        <drake:proximity_properties>
+          <drake:mu_dynamic>0.5</drake:mu_dynamic>
+          <drake:mu_static>1.0</drake:mu_static>
+        </drake:proximity_properties>
+        -->
+      </collision>
+
+      <!-- Collision: head -->
+      <collision name="head_collision">
+        <pose>0 0 0.025 0 0 0</pose>
+        <geometry>
+          <cylinder>
+            <radius>0.009</radius>
+            <length>0.01</length>
+          </cylinder>
+        </geometry>
+      </collision>
+    </link>
+
+    <!-- Helpful frames matching the style of the repository's other models -->
+    <frame name="origin">
+      <pose relative_to="m12_screw_gpt">0 0 0 0 0 0</pose>
+    </frame>
+    <frame name="m12_screw_frame">
+      <pose relative_to="m12_screw_gpt">0 0 0 0 0 0</pose>
+    </frame>
+  </model>
+</sdf>

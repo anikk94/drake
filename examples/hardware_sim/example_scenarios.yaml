@@ -46,16 +46,173 @@ Demo:
   - add_weld:
       parent: wsg_on_iiwa
       child: wsg::body
+  # - add_model:
+  #     name: ani_bowl_object
+  #     file: package://drake_models/dishes/evo_bowl.sdf
+  #     default_free_body_pose:
+  #       bowl:
+  #         base_frame: amazon_table::amazon_table
+  #         # Pose the bowl slightly above the table so it will fall to rest.
+  #         translation: [0, 0.11, 0.11]
+  #         # rotation: [0, 1.5, 0]
+
   - add_model:
-      name: bell_pepper
-      file: package://drake_models/veggies/yellow_bell_pepper_no_stem_low.sdf
+      name: ani_ikea_bin
+      file: file:///root/drake_ws/drake/ani_model_lib/ikea_bin/ikea_bin.sdf
+  
+  # The static ikea_bin model contains a model-level pose; no frame/weld needed.
+  # ani_ikea_bin will be made static in its SDF; no weld is required here.
+  # - add_model:
+  #     name: bell_pepper
+  #     file: package://drake_models/veggies/yellow_bell_pepper_no_stem_low.sdf
+  #     default_free_body_pose:
+  #       flush_bottom_center__z_up:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0, 0.10, 0.60]
+  - add_model:
+      name: m12_screw_1
+      file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
       default_free_body_pose:
-        flush_bottom_center__z_up:
+        m12_screw_frame:
           base_frame: amazon_table::amazon_table
           # We pose the pepper in the air above the table so that it won't start
           # in penetration. After the simulation starts, it will fall and come
           # to rest on the table.
-          translation: [0, 0.10, 0.20]
+          translation: [0, 0.10, 0.30]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  # - add_model:
+  #     name: m12_screw_2
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [-0.05, 0.10, 0.30]
+  # - add_model:
+  #     name: m12_screw_3
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.05, 0.10, 0.30]
+  # - add_model:
+  #     name: m12_screw_4
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.10, 0.10, 0.30]
+  # - add_model:
+  #     name: m12_screw_5
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [-0.10, 0.1, 0.30]
+  # - add_model:
+  #     name: m12_screw_6
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.00, 0.15, 0.30]
+  # - add_model:
+  #     name: m12_screw_7
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.0, 0.05, 0.30]
+  # - add_model:
+  #     name: m12_screw_11
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0, 0.10, 0.32]
+  # - add_model:
+  #     name: m12_screw_12
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [-0.05, 0.10, 0.32]
+  # - add_model:
+  #     name: m12_screw_13
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.05, 0.10, 0.32]
+  # - add_model:
+  #     name: m12_screw_14
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.10, 0.10, 0.32]
+  # - add_model:
+  #     name: m12_screw_15
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [-0.10, 0.1, 0.32]
+  # - add_model:
+  #     name: m12_screw_16
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.00, 0.15, 0.32]
+  # - add_model:
+  #     name: m12_screw_17
+  #     file: file:///root/drake_ws/drake/ani_model_lib/m12_screw/m12_screw_gpt.sdf
+  #     default_free_body_pose:
+  #       m12_screw_frame:
+  #         base_frame: amazon_table::amazon_table
+  #         # We pose the pepper in the air above the table so that it won't start
+  #         # in penetration. After the simulation starts, it will fall and come
+  #         # to rest on the table.
+  #         translation: [0.0, 0.05, 0.32]
   lcm_buses:
     driver_traffic:
       # Use a non-default LCM url to communicate with the robot.

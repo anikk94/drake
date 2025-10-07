@@ -84,6 +84,13 @@ $ cd drake
 $ bazel run //tools:meldis -- -w &
 $ bazel run //examples/hardware_sim:demo_cc
 ```
+## ANI
+```
+cd drake
+./setup/install_prereqs 
+bazel run //tools:meldis -- -w
+bazel run //examples/hardware_sim:demo_cc
+```
 
 (Optionally) To actuate the robot, run the command in another terminal:
 ```

@@ -58,7 +58,7 @@ Demo:
 
   - add_model:
       name: ani_ikea_bin
-      file: file:///root/drake_ws/drake/ani_model_library/ikea_bin/ikea_bin.sdf
+      file: file:///root/drake2_ws/drake/ani_model_library/ikea_bin/ikea_bin.sdf
   
   # The static ikea_bin model contains a model-level pose; no frame/weld needed.
   # ani_ikea_bin will be made static in its SDF; no weld is required here.
@@ -75,7 +75,7 @@ Demo:
   - add_model:
       name: m12_screw_1
       # file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-      file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
       default_free_body_pose:
         m12_screw_frame:
           base_frame: amazon_table::amazon_table

@@ -14,38 +14,42 @@ Demo:
   - add_weld:
       parent: world
       child: amazon_table::amazon_table
-  - add_model:
-      name: iiwa
-      file: package://drake_models/iiwa_description/urdf/iiwa14_primitive_collision.urdf
-      default_joint_positions:
-        iiwa_joint_1: [-0.2]
-        iiwa_joint_2: [0.79]
-        iiwa_joint_3: [0.32]
-        iiwa_joint_4: [-1.76]
-        iiwa_joint_5: [-0.36]
-        iiwa_joint_6: [0.64]
-        iiwa_joint_7: [-0.73]
-  - add_frame:
-      name: iiwa_on_world
-      X_PF:
-        base_frame: world
-        translation: [0, -0.7, 0.1]
-        rotation: !Rpy { deg: [0, 0, 90] }
-  - add_weld:
-      parent: iiwa_on_world
-      child: iiwa::base
-  - add_model:
-      name: wsg
-      file: package://drake_models/wsg_50_description/sdf/schunk_wsg_50_with_tip.sdf
-  - add_frame:
-      name: wsg_on_iiwa
-      X_PF:
-        base_frame: iiwa_link_7
-        translation: [0, 0, 0.114]
-        rotation: !Rpy { deg: [90, 0, 90] }
-  - add_weld:
-      parent: wsg_on_iiwa
-      child: wsg::body
+
+
+  # - add_model:
+  #     name: iiwa
+  #     file: package://drake_models/iiwa_description/urdf/iiwa14_primitive_collision.urdf
+  #     default_joint_positions:
+  #       iiwa_joint_1: [-0.2]
+  #       iiwa_joint_2: [0.79]
+  #       iiwa_joint_3: [0.32]
+  #       iiwa_joint_4: [-1.76]
+  #       iiwa_joint_5: [-0.36]
+  #       iiwa_joint_6: [0.64]
+  #       iiwa_joint_7: [-0.73]
+  # - add_frame:
+  #     name: iiwa_on_world
+  #     X_PF:
+  #       base_frame: world
+  #       translation: [0, -0.7, 0.1]
+  #       rotation: !Rpy { deg: [0, 0, 90] }
+  # - add_weld:
+  #     parent: iiwa_on_world
+  #     child: iiwa::base
+  # - add_model:
+  #     name: wsg
+  #     file: package://drake_models/wsg_50_description/sdf/schunk_wsg_50_with_tip.sdf
+  # - add_frame:
+  #     name: wsg_on_iiwa
+  #     X_PF:
+  #       base_frame: iiwa_link_7
+  #       translation: [0, 0, 0.114]
+  #       rotation: !Rpy { deg: [90, 0, 90] }
+  # - add_weld:
+  #     parent: wsg_on_iiwa
+  #     child: wsg::body
+
+
   # - add_model:
   #     name: ani_bowl_object
   #     file: package://drake_models/dishes/evo_bowl.sdf
@@ -82,58 +86,63 @@ Demo:
           # We pose the pepper in the air above the table so that it won't start
           # in penetration. After the simulation starts, it will fall and come
           # to rest on the table.
-          translation: [0, 0.10, 0.30]
+          translation: [0, 0.08, 0.30]
           rotation: !Rpy { deg: [0, 45, 90] }
-  # - add_model:
-  #     name: m12_screw_2
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [-0.05, 0.10, 0.30]
-  # - add_model:
-  #     name: m12_screw_3
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.05, 0.10, 0.30]
-  # - add_model:
-  #     name: m12_screw_4
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.10, 0.10, 0.30]
-  # - add_model:
-  #     name: m12_screw_5
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [-0.10, 0.1, 0.30]
-  # - add_model:
-  #     name: m12_screw_6
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.00, 0.15, 0.30]
+  - add_model:
+      name: m12_screw_2
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.08, 0.30]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_3
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.08, 0.30]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_4
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.00, 0.14, 0.30]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_5
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.14, 0.30]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_6
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.14, 0.30]
+          rotation: !Rpy { deg: [0, 45, 90] }
   # - add_model:
   #     name: m12_screw_7
   #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
@@ -224,16 +233,16 @@ Demo:
       X_PB:
         translation: [1.5, 0.8, 1.25]
         rotation: !Rpy { deg: [-120, 5, 125] }
-  model_drivers:
-    iiwa: !IiwaDriver
-      hand_model_name: wsg
-      lcm_bus: driver_traffic
-    wsg: !SchunkWsgDriver
-      lcm_bus: driver_traffic
-  initial_position:
-    # Set an initial position for the gripper. This can also be spelled using
-    # default_joint_positions in the add_model directive, but sometimes that is
-    # awkward (e.g., if the gripper was in a separate add_directives sub-file).
-    wsg:
-      left_finger_sliding_joint: [-0.02]
-      right_finger_sliding_joint: [0.02]
+  # model_drivers:
+  #   iiwa: !IiwaDriver
+  #     hand_model_name: wsg
+  #     lcm_bus: driver_traffic
+  #   wsg: !SchunkWsgDriver
+  #     lcm_bus: driver_traffic
+  # initial_position:
+  #   # Set an initial position for the gripper. This can also be spelled using
+  #   # default_joint_positions in the add_model directive, but sometimes that is
+  #   # awkward (e.g., if the gripper was in a separate add_directives sub-file).
+  #   wsg:
+  #     left_finger_sliding_joint: [-0.02]
+  #     right_finger_sliding_joint: [0.02]

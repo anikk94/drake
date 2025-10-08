@@ -50,6 +50,11 @@ Demo:
   #     child: wsg::body
 
 
+  # ===========================================================================
+  #
+  # BIN 
+  #
+  # ===========================================================================
   # - add_model:
   #     name: ani_bowl_object
   #     file: package://drake_models/dishes/evo_bowl.sdf
@@ -76,6 +81,13 @@ Demo:
   #         # in penetration. After the simulation starts, it will fall and come
   #         # to rest on the table.
   #         translation: [0, 0.10, 0.60]
+
+  # ===========================================================================
+  #
+  # SCREWS 
+  #
+  # ===========================================================================
+
   - add_model:
       name: m12_screw_1
       # file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
@@ -143,86 +155,215 @@ Demo:
           # to rest on the table.
           translation: [0.03, 0.14, 0.30]
           rotation: !Rpy { deg: [0, 45, 90] }
-  # - add_model:
-  #     name: m12_screw_7
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.0, 0.05, 0.30]
-  # - add_model:
-  #     name: m12_screw_11
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0, 0.10, 0.32]
-  # - add_model:
-  #     name: m12_screw_12
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [-0.05, 0.10, 0.32]
-  # - add_model:
-  #     name: m12_screw_13
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.05, 0.10, 0.32]
-  # - add_model:
-  #     name: m12_screw_14
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.10, 0.10, 0.32]
-  # - add_model:
-  #     name: m12_screw_15
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [-0.10, 0.1, 0.32]
-  # - add_model:
-  #     name: m12_screw_16
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.00, 0.15, 0.32]
-  # - add_model:
-  #     name: m12_screw_17
-  #     file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
-  #     default_free_body_pose:
-  #       m12_screw_frame:
-  #         base_frame: amazon_table::amazon_table
-  #         # We pose the pepper in the air above the table so that it won't start
-  #         # in penetration. After the simulation starts, it will fall and come
-  #         # to rest on the table.
-  #         translation: [0.0, 0.05, 0.32]
+  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  - add_model:
+      name: m12_screw_7
+      # file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0, 0.08, 0.40]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_8
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.08, 0.40]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_9
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.08, 0.40]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_10
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.00, 0.14, 0.40]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_11
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.14, 0.40]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_12
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.14, 0.40]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  # +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  - add_model:
+      name: m12_screw_13
+      # file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0, 0.08, 0.50]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_14
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.08, 0.50]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_15
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.08, 0.50]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_16
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.00, 0.14, 0.50]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_17
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.14, 0.50]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_18
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.14, 0.50]
+          rotation: !Rpy { deg: [0, 45, 90] }
+# +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  - add_model:
+      name: m12_screw_19
+      # file: file:///root/drake_ws/drake/ani_model_library/m12_screw/m12_screw_gpt.sdf
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0, 0.08, 0.60]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_20
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.08, 0.60]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_21
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.08, 0.60]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_22
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.00, 0.14, 0.60]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_23
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [-0.03, 0.14, 0.60]
+          rotation: !Rpy { deg: [0, 45, 90] }
+  - add_model:
+      name: m12_screw_24
+      file: file:///root/drake2_ws/drake/ani_model_library/m12_screw/m12_screw.sdf
+      default_free_body_pose:
+        m12_screw_frame:
+          base_frame: amazon_table::amazon_table
+          # We pose the pepper in the air above the table so that it won't start
+          # in penetration. After the simulation starts, it will fall and come
+          # to rest on the table.
+          translation: [0.03, 0.14, 0.60]
+          rotation: !Rpy { deg: [0, 45, 90] }
+
+  # ===========================================================================
+
+
+
   lcm_buses:
     driver_traffic:
       # Use a non-default LCM url to communicate with the robot.

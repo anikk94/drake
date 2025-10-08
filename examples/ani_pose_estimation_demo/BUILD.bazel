@@ -179,4 +179,25 @@ drake_py_unittest(
     ],
 )
 
+drake_cc_binary(
+    name = "ani_test",
+    srcs = ["ani_test.cc"],
+    # add_test_rule = 1,
+    # data = [":models"],
+    # test_rule_args = ["--target_realtime_rate=0.0"],
+    deps = [
+        # ":pendulum_geometry",
+        # ":pendulum_plant",
+        "//geometry:drake_visualizer",
+        "//systems/analysis:simulator",
+        "//systems/framework:diagram",
+        "//systems/primitives:constant_vector_source",
+        "//systems/lcm:lcm_pubsub_system",
+        "//lcmtypes:lcmtypes_drake_cc",# <- not sure this is needed
+        "@gflags",
+    ],
+)
+
+
+
 add_lint_tests()

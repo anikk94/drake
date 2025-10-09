@@ -5,7 +5,7 @@
 		<static>true</static>
 		<!-- Default placement for the static bin when included directly.
 		     This places the model at (0.5, 0.11, 0.11) in the parent frame. -->
-		<pose>0.5 0.11 0.11 0 0 0</pose>
+		<pose>0.5 0.11 0.05 0 0 0</pose>
 		<link name="ikea_bin">
 			<inertial>
 				<pose>0 0 0 0 0 0</pose>
@@ -23,6 +23,7 @@
 
 			<visual name="visual">
 				<pose>-0.5 0 0 -1.57 3.14 0</pose>
+				<!-- <pose>-0.5 0 0 0 3.14 0</pose> -->
 				<geometry>
 					<mesh>
 						<!-- Use relative path so Bazel runfiles can stage package data together -->
@@ -41,7 +42,9 @@
 						<!-- <uri>assets/ikea_bin.vtk</uri> -->
 						<!-- <uri>assets/ikea_bin_v2.vtk</uri> -->
 						<!-- <uri>assets/ikea_bin_v4.vtk</uri> -->
-						<uri>assets/ikea_bin_v4_only_tets.vtk</uri>
+						<!-- <uri>assets/ikea_bin_v4_only_tets.vtk</uri> -->
+						<!-- <uri>assets/ikea_bin_v4.1.vtk</uri> -->
+						<uri>assets/ikea_bin_v4.1_only_tets.vtk</uri>
 						<!-- <uri>assets/ikea_bin_v4.obj</uri> -->
 						<scale>0.001 0.001 0.001</scale>
 					</mesh>

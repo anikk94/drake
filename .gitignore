@@ -16,6 +16,7 @@
 /.clwb_aspects/
 /.vscode
 /.history
+**venv**
 
 # (Possible) CMake build artifacts
 /build/

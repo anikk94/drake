@@ -1,7 +1,8 @@
 import trimesh
 import numpy as np
 
-small_model_path = "ani_model_library/m12_screw/assets/m12_screw_v2.STL"
+# small_model_path = "ani_model_library/m12_screw/assets/m12_screw_v2.STL"
+small_model_path = "ani_model_library/m12_screw/assets/m12_screw_DETAILED.STL"
 big_model_path = "ani_model_library/m12_screw/assets/bin_of_screws.stl"
 bin_model_path = "ani_model_library/ikea_bin/assets/ikea_bin_v4.STL"
 
@@ -108,8 +109,8 @@ for i, pose in enumerate(list_of_transforms[1:]):
     all_meshes.append(m_copy)
 
 # Adding in the bin model
-# bin_mesh.apply_transform(list_of_transforms[0])
-# all_meshes.append(bin_mesh)
+bin_mesh.apply_transform(list_of_transforms[0])
+all_meshes.append(bin_mesh)
 
 
 composite = trimesh.util.concatenate(all_meshes)

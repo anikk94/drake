@@ -18,6 +18,7 @@
       <visual name="visual">
         <geometry>
           <mesh>
+            <!-- <uri>file:///root/drake2_ws/drake/ani_model_library/m12_screw/assets/m12_screw_v2.gltf</uri> -->
             <uri>file:///root/drake2_ws/drake/ani_model_library/m12_screw/assets/m12_screw_v3.gltf</uri>
             <scale>0.001 0.001 0.001</scale>
           </mesh>
@@ -26,8 +27,9 @@
       <collision name="collision">
         <geometry>
           <mesh>
-            <uri>file:///root/drake2_ws/drake/ani_model_library/m12_screw/assets/m12_screw_v3_tets.vtk</uri>
+            <!-- <uri>file:///root/drake2_ws/drake/ani_model_library/m12_screw/assets/m12_screw_v2.vtk</uri> -->
             <!-- <uri>file:///root/drake2_ws/drake/ani_model_library/m12_screw/assets/m12_screw_DETAILED_tets.vtk</uri> -->
+            <uri>file:///root/drake2_ws/drake/ani_model_library/m12_screw/assets/m12_screw_v3_tets.vtk</uri>
             <scale>0.001 0.001 0.001</scale>
           </mesh>
         </geometry>

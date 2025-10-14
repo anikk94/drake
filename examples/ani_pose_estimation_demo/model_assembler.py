@@ -110,8 +110,8 @@ for i, pose in enumerate(list_of_transforms[1:]):
 
 # Adding in the bin model
 # -----------------------
-# bin_mesh.apply_transform(list_of_transforms[0])
-# all_meshes.append(bin_mesh)
+bin_mesh.apply_transform(list_of_transforms[0])
+all_meshes.append(bin_mesh)
 
 
 composite = trimesh.util.concatenate(all_meshes)

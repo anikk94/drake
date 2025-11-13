@@ -21,8 +21,9 @@ Drake maintainers should keep this file in sync with ani_pose_estimation_demo.py
 #include <string>
 #include <vector>
 #include <iostream> // ANI 
-#include <thread> // ANI
-#include <chrono> // ANI
+#include <thread>   // ANI
+#include <chrono>   // ANI
+#include <iomanip>  // ANI
 
 #include <gflags/gflags.h>
 
@@ -60,7 +61,15 @@ class TimePrinter : public drake::systems::LeafSystem<double> {
   drake::systems::EventStatus PublishTime(
     const drake::systems::Context<double>& context
   ) const {
-    std::cout << "Simulation time: " << context.get_time() << "s" << std::endl;
+
+    auto now_timepoint = std::chrono::system_clock::now();
+
+    std::time_t now_time_t = std::chrono::system_clock::to_time_t(now_timepoint);
+
+    std::tm* localtime = std::localtime(&now_time_t);
+
+    std::cout << "[" << std::put_time(localtime, "%Y-%m-%d %H:%M:%S") << "] " << "Simulation time: " << context.get_time() << "s" << std::endl;
+
     return drake::systems::EventStatus::Succeeded();
   }
 };

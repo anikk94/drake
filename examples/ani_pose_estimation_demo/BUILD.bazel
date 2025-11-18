@@ -109,6 +109,7 @@ drake_cc_binary(
         "//systems/lcm:lcm_config_functions",
         "//systems/sensors:camera_config_functions",
         "//visualization:visualization_config_functions",
+        "//common/yaml:yaml_io"
     ],
 )
 

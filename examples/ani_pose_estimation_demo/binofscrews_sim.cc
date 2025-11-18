@@ -24,6 +24,7 @@ Drake maintainers should keep this file in sync with ani_pose_estimation_demo.py
 #include <thread>   // ANI
 #include <chrono>   // ANI
 #include <iomanip>  // ANI
+#include <drake/common/yaml/yaml_io.h> // ANI
 
 #include <gflags/gflags.h>
 
@@ -109,6 +110,9 @@ using systems::lcm::LcmBuses;
 using systems::sensors::ApplyCameraConfig;
 using visualization::ApplyVisualizationConfig;
 
+using drake::multibody::ContactModel; // ANI
+using drake::multibody::DiscreteContactApproximation; // ANI
+
 
 // void printRotationMatrix(const Eigen::Matrix3d& R) {
 //   Eigen::IOFormat fmt(4, 0,", ", "\n", "[", "]");
@@ -191,9 +195,44 @@ void Simulation::Setup() {
   // Create the multibody plant and scene graph.
   auto [sim_plant, scene_graph] = AddMultibodyPlant(
       scenario_.plant_config, scenario_.scene_graph_config, &builder);
-  
+      
   plant_ = &sim_plant;
+  
 
+  // plant_->time_step = 5e-4;
+  
+  // std::cout << plant_->get_contact_model() << '\n';
+  plant_->set_penetration_allowance(1e-5);
+  // plant_->set_contact_model(ContactModel::kPoint);
+  // plant_->set_contact_model(ContactModel::kPointContactOnly);
+  // plant_->set_contact_model(ContactModel::kHydroelastic);
+  // plant_->set_contact_model(ContactModel::kHydroelasticsOnly);
+  // plant_->set_contact_model(ContactModel::kHydroelasticWithFallback);
+  plant_->set_discrete_contact_approximation(DiscreteContactApproximation::kSap);
+  
+
+  // auto & p = scenario_.scene_graph_config.default_proximity_properties;
+  // p.compliance_type = std::string("compliant");
+  // p.hydroelastic_modulus = 1e9;
+
+  /*    
+  current plant_config
+  --------------------
+    time_step: 0.001
+    use_sampled_output_ports: true
+  * penetration_allowance: 0.001  
+  * stiction_tolerance: 0.0001
+  * contact_model: hydroelastic_with_fallback
+    discrete_contact_approximation: lagged
+    sap_near_rigid_threshold: 1.0
+    contact_surface_representation: polygon
+    adjacent_bodies_collision_filters: true
+  */   
+
+  std::cout << "scenario._plant_config\n" 
+            << "----------------------\n"
+            << drake::yaml::SaveYamlString(scenario_.plant_config) << std::endl;
+            
   // Add model directives.
   std::vector<ModelInstanceInfo> added_models;
   ProcessModelDirectives({scenario_.directives}, &sim_plant, &added_models);
@@ -201,8 +240,9 @@ void Simulation::Setup() {
   // Override or supplement initial positions.
   manipulation::ApplyNamedPositionsAsDefaults(scenario_.initial_position,
     &sim_plant);
-    
-      builder.AddSystem<TimePrinter>();
+  
+  // ANI
+  builder.AddSystem<TimePrinter>();
     
   // Now the plant is complete.
   sim_plant.Finalize();

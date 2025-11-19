@@ -114,13 +114,13 @@
                     0.7960784314,
                     0.8235294118,
                     0.937254902,
-                    0.6
+                    1
                 ],
                 "metallicFactor": 0,
                 "roughnessFactor": 1
             },
             "doubleSided": true,
-            "alphaMode": "BLEND",
+            "alphaMode": "OPAQUE",
             "extras": {
                 "Dtk_ColorId": 1
             }

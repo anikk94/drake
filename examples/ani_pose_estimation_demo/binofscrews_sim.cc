@@ -48,6 +48,8 @@ Drake maintainers should keep this file in sync with ani_pose_estimation_demo.py
 #include "drake/math/rigid_transform.h" // ANI
 #include <Eigen/Dense> // ANI
 #include "drake/systems/framework/leaf_system.h"
+#include <drake/math/roll_pitch_yaw.h> // ANI
+
 
 class TimePrinter : public drake::systems::LeafSystem<double> {
   public:
@@ -160,6 +162,45 @@ void queryPoses(
     
 }
 
+void queryPoses2(
+  const multibody::MultibodyPlant<double>& plant,
+  const drake::systems::Context<double>& plant_context) {
+    std::cout << "queryPoses2()" << std::endl;
+
+    for(drake::multibody::BodyIndex bi(0);bi < plant.num_bodies(); ++bi){
+      const drake::multibody::Body<double>& body = plant.get_body(bi);
+      const std::string& body_name = body.name();
+      std::cout << " ----------" << bi << ". " << body_name << " ----------" << std::endl;
+      
+      // const drake::math::RigidTransform<double> X_WB = plant.GetFreeBodyPose(plant_context, body);
+      // const Eigen::Vector3d& position_W = X_WB.translation();
+
+      const auto& X_WB=plant.EvalBodyPoseInWorld(plant_context, body);
+      const Eigen::Vector3d& position_W = X_WB.translation();
+      const drake::math::RotationMatrix<double>& R_WB = X_WB.rotation();
+      drake::math::RollPitchYaw<double> rpy_WB(R_WB);
+
+      // std::cout << "position: "
+      //   << "\n  x: " << position_W.x()
+      //   << "\n  y: " << position_W.y()
+      //   << "\n  z: " << position_W.z() << std::endl;
+      // printRotationMatrix(rotation_W);
+      std::cout << "position:\n"
+                << "[ " << position_W.x() << ", " << position_W.y() << ", "
+                << position_W.z() << " ]" << std::endl;
+      std::cout << "rotation (rpy)\n";
+      // std::cout << "[\n";
+      // for(int i=0;i<3;++i){
+      //   std::cout << "  " << rotation_W(i, 0) << ", " << rotation_W(i, 1) <<
+      //   ", " << rotation_W(i, 2) << std::endl;
+      // }
+      // std::cout << "]\n";
+      std::cout << "(" << rpy_WB.roll_angle() << ", " << rpy_WB.pitch_angle()
+                << ", " << rpy_WB.yaw_angle() << ")" << std::endl;
+    }
+
+  }
+
 /* Class that holds the configuration and data of a simulation. */
 class Simulation {
  public:
@@ -202,13 +243,13 @@ void Simulation::Setup() {
   // plant_->time_step = 5e-4;
   
   // std::cout << plant_->get_contact_model() << '\n';
-  plant_->set_penetration_allowance(1e-5);
-  // plant_->set_contact_model(ContactModel::kPoint);
+  plant_->set_penetration_allowance(1e-7);
+  plant_->set_contact_model(ContactModel::kPoint);
   // plant_->set_contact_model(ContactModel::kPointContactOnly);
   // plant_->set_contact_model(ContactModel::kHydroelastic);
   // plant_->set_contact_model(ContactModel::kHydroelasticsOnly);
   // plant_->set_contact_model(ContactModel::kHydroelasticWithFallback);
-  plant_->set_discrete_contact_approximation(DiscreteContactApproximation::kSap);
+  // plant_->set_discrete_contact_approximation(DiscreteContactApproximation::kSap);
   
 
   // auto & p = scenario_.scene_graph_config.default_proximity_properties;
@@ -299,6 +340,9 @@ void Simulation::Simulate() {
   
   queryPoses(plant, final_plant_context);
   // sim_clock.join();
+
+  queryPoses2(plant, final_plant_context);
+
 }
 
 int main() {

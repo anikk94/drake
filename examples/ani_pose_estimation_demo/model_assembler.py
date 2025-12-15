@@ -3,15 +3,17 @@ import numpy as np
 
 # small_model_path = "ani_model_library/m12_screw/assets/m12_screw_v2.STL"
 small_model_path = "ani_model_library/m12_screw/assets/m12_screw_DETAILED.STL"
-big_model_path = "ani_model_library/m12_screw/assets/bin_of_screws.stl"
 bin_model_path = "ani_model_library/ikea_bin/assets/ikea_bin_v4.STL"
+# rect_bin_model_path = "ani_model_library/rectangular_bin/assets/rectangular_box.STL"
+big_model_path = "examples/ani_pose_estimation_demo/bin_of_screws.stl"
 
 def read_input() -> list:
     '''
     read input file with pose data
     '''
     # list_of_poses = sample_pose_input.split(' --')
-    f = open("examples/ani_pose_estimation_demo/screw_poses.txt", 'r')
+    # f = open("examples/ani_pose_estimation_demo/screw_poses.txt", 'r')
+    f = open("examples/ani_pose_estimation_demo/screw_poses2.txt", 'r')
     pose_data = f.read().strip().split()
     f.close()
     return pose_data
@@ -96,13 +98,18 @@ base_mesh = trimesh.load(small_model_path)
 print(f"loaded base model: {len(base_mesh.faces)} faces")
 bin_mesh = trimesh.load(bin_model_path)
 print(f"loaded bin model: {len(bin_mesh.faces)} faces")
+# rect_bin_mesh = trimesh.load(rect_bin_model_path)
+# print(f"loaded bin model: {len(rect_bin_mesh.faces)} faces")
 
 all_meshes = []
 
+# 0.1
 # for i, pose in enumerate(poses):
 #     m_copy = base_mesh.copy()
 #     m_copy.apply_transform(pose)
 #     all_meshes.append(m_copy)
+
+# 0.2
 for i, pose in enumerate(list_of_transforms[1:]):
     m_copy = base_mesh.copy()
     m_copy.apply_transform(pose)
@@ -110,8 +117,10 @@ for i, pose in enumerate(list_of_transforms[1:]):
 
 # Adding in the bin model
 # -----------------------
-bin_mesh.apply_transform(list_of_transforms[0])
-all_meshes.append(bin_mesh)
+# rect_bin_mesh.apply_transform(list_of_transforms[0])
+# all_meshes.append(rect_bin_mesh)
+# bin_mesh.apply_transform(list_of_transforms[0])
+# all_meshes.append(bin_mesh)
 
 
 composite = trimesh.util.concatenate(all_meshes)

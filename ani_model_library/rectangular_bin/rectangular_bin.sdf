@@ -23,8 +23,8 @@
       <visual name="visual">
         <geometry><box><size>0.146 0.122 0.003</size></box></geometry>
         <material>
-            <ambient>0.2 0.7 1.0 0.4</ambient>   <!-- RGBA, a = 0.4 → 60 % transparent -->
-            <diffuse>0.2 0.7 .0 0.4</diffuse>
+            <ambient>0.2 0.7 1.0 0.8</ambient>   <!-- RGBA, a = 0.4 → 60 % transparent -->
+            <diffuse>0.2 0.7 .0 0.8</diffuse>
         </material>
       </visual>
     </link>

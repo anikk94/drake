@@ -1,6 +1,9 @@
 <?xml version="1.0"?>
 <sdf version="1.7" xmlns:drake="drake.mit.edu">
   <model name="m12_screw">
+
+    <!-- <static>true</static> -->
+
     <link name="m12_screw">
       <inertial>
         <!-- <pose>0.000537 -0.00272 0.0384 0 0 0</pose> -->

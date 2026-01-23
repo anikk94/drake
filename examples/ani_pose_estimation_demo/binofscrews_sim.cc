@@ -49,6 +49,7 @@ Drake maintainers should keep this file in sync with ani_pose_estimation_demo.py
 #include <Eigen/Dense> // ANI
 #include "drake/systems/framework/leaf_system.h"
 #include <drake/math/roll_pitch_yaw.h> // ANI
+#include <drake/math/quaternion.h> // ANI
 
 
 class TimePrinter : public drake::systems::LeafSystem<double> {
@@ -170,33 +171,36 @@ void queryPoses2(
     for(drake::multibody::BodyIndex bi(0);bi < plant.num_bodies(); ++bi){
       const drake::multibody::Body<double>& body = plant.get_body(bi);
       const std::string& body_name = body.name();
-      std::cout << " ----------" << bi << ". " << body_name << " ----------" << std::endl;
+      std::cout << '\n' /*<< " ----------" */<< bi << ". " << body_name /*<< " ----------" */<< std::endl;
       
       // const drake::math::RigidTransform<double> X_WB = plant.GetFreeBodyPose(plant_context, body);
       // const Eigen::Vector3d& position_W = X_WB.translation();
 
       const auto& X_WB=plant.EvalBodyPoseInWorld(plant_context, body);
       const Eigen::Vector3d& position_W = X_WB.translation();
-      const drake::math::RotationMatrix<double>& R_WB = X_WB.rotation();
-      drake::math::RollPitchYaw<double> rpy_WB(R_WB);
+      const Eigen::Matrix3d& rotation_W = X_WB.rotation().matrix();
+      // const drake::math::RotationMatrix<double>& R_WB = X_WB.rotation();
+      // drake::math::RollPitchYaw<double> rpy_WB(R_WB);
+      Eigen::Quaterniond q_WB = X_WB.rotation().ToQuaternion();
 
       // std::cout << "position: "
       //   << "\n  x: " << position_W.x()
       //   << "\n  y: " << position_W.y()
       //   << "\n  z: " << position_W.z() << std::endl;
       // printRotationMatrix(rotation_W);
-      std::cout << "position:\n"
-                << "[ " << position_W.x() << ", " << position_W.y() << ", "
-                << position_W.z() << " ]" << std::endl;
-      std::cout << "rotation (rpy)\n";
-      // std::cout << "[\n";
-      // for(int i=0;i<3;++i){
-      //   std::cout << "  " << rotation_W(i, 0) << ", " << rotation_W(i, 1) <<
-      //   ", " << rotation_W(i, 2) << std::endl;
-      // }
-      // std::cout << "]\n";
-      std::cout << "(" << rpy_WB.roll_angle() << ", " << rpy_WB.pitch_angle()
-                << ", " << rpy_WB.yaw_angle() << ")" << std::endl;
+      std::cout /*<< "position:\n"*/
+                /*<< "[ " */<< position_W.x() << ", " << position_W.y() << ", "
+                << position_W.z() /*<< " ]" */<< std::endl;
+      // std::cout << "rotation (rpy)\n";
+      std::cout << "[\n";
+      for(int i=0;i<3;++i){
+        std::cout << "  " << rotation_W(i, 0) << ", " << rotation_W(i, 1) <<
+        ", " << rotation_W(i, 2) << std::endl;
+      }
+      std::cout << "]\n";
+      std::cout << q_WB.w() << ", " << q_WB.x() << ", " << q_WB.y() << ", " << q_WB.z() << std::endl;
+      // std::cout /*<< "[ " */<< rpy_WB.roll_angle() << ", " << rpy_WB.pitch_angle()
+      //           << ", " << rpy_WB.yaw_angle() /*<< " ]" */<< std::endl;
     }
 
   }
@@ -330,6 +334,7 @@ void Simulation::Simulate() {
 
   // const double target_time = std::min(10.0, scenario_.simulation_duration);
   const double target_time = 10.0;
+  // const double target_time = 0.01;
 
   // simulator_->AdvanceTo(scenario_.simulation_duration);
   simulator_->AdvanceTo(target_time);
